@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29215.179
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeywordQueryLanguageCompiler", "KeywordQueryLanguageCompiler\KeywordQueryLanguageCompiler.csproj", "{0CC073DA-7509-4BB1-AF31-39DC421A3C8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeywordQueryLanguageCompiler.Tests", "KeywordQueryLanguageCompiler.Tests\KeywordQueryLanguageCompiler.Tests.csproj", "{F2A7FC3C-C305-493D-ACDB-CA922B8EEFBC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0CC073DA-7509-4BB1-AF31-39DC421A3C8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CC073DA-7509-4BB1-AF31-39DC421A3C8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CC073DA-7509-4BB1-AF31-39DC421A3C8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CC073DA-7509-4BB1-AF31-39DC421A3C8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2A7FC3C-C305-493D-ACDB-CA922B8EEFBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2A7FC3C-C305-493D-ACDB-CA922B8EEFBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2A7FC3C-C305-493D-ACDB-CA922B8EEFBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2A7FC3C-C305-493D-ACDB-CA922B8EEFBC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {77FF9451-8447-4FA6-B642-0080B1915CA3}
+	EndGlobalSection
+EndGlobal
