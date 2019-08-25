@@ -116,7 +116,6 @@
                 throw new ParsingException("NEAR keyword only supports simple terms or prefix terms. The keyword does not allow complex expressions as operands", element, ErrorKind.NearKeywordOperandError);
             }
 
-            // 2015-11-20 : Microsoft planned to deprecate the generic form "a NEAR b" in favor of the custom form "NEAR((a, b), 100, FALSE)".
             var result = $"(NEAR(({o1}, {o2}), 2000, FALSE))";
             stack.Push(result);
         }

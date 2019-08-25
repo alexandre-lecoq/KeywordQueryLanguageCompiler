@@ -13,7 +13,9 @@
         /// </summary>
         public LexicalElementType Type { get; }
 
-        // The lexical element text.
+        /// <summary>
+        /// The lexical element text.
+        /// </summary>
         public string Text { get; }
 
         /// <summary>

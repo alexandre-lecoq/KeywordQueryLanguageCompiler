@@ -143,7 +143,7 @@
 
             var lexemes = Lexer.Tokenize(searchExpression);
 
-            // We're not supposed to use UserFriendlinessParserLevelHeuristics() right here in that way.
+            // We're not supposed to use FixApostrophesForUserFriendliness() right here in that way.
             // But that doesn't matter since we get rid of anything but terms just next.
             var lexemesWithFixedQuotes = FixApostrophesForUserFriendliness(lexemes);
             var terms = lexemesWithFixedQuotes.Where(l => l.Type == LexicalElementType.Term).Select(l => l.Text).ToList();
