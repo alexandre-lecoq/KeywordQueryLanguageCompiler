@@ -254,6 +254,14 @@ namespace KeywordQueryLanguageCompiler
 
                     return LexicalElementType.Term;
 
+                case 6:
+                    if (text.Equals("ANDNOT", StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        return LexicalElementType.Not;
+                    }
+
+                    return LexicalElementType.Term;
+
                 default:
                     return LexicalElementType.Term;
             }

@@ -85,6 +85,16 @@
         }
 
         [Fact]
+        public void SimpleAndNot()
+        {
+            var input = new[]
+            {
+                new LexicalElement(LexicalElementType.Not, "ANDNOT", 1)
+            };
+            Assert.Throws<ParsingException>(() => CodeGenerator.Generate(input, FormsOfType.Both));
+        }
+
+        [Fact]
         public void SimpleOr()
         {
             var input = new[]
@@ -235,6 +245,23 @@
                 new LexicalElement(LexicalElementType.Term, "op1", 1),
                 new LexicalElement(LexicalElementType.Term, "op2", 3),
                 new LexicalElement(LexicalElementType.Not, "NOT", 2)
+            };
+
+            var expectedOutput = "((FORMSOF(INFLECTIONAL, \"op1\") OR FORMSOF(THESAURUS, \"op1\")) AND NOT (FORMSOF(INFLECTIONAL, \"op2\") OR FORMSOF(THESAURUS, \"op2\")))";
+
+            var output = CodeGenerator.Generate(input, FormsOfType.Both);
+
+            Assert.Equal(expectedOutput, output);
+        }
+
+        [Fact]
+        public void ValidAndNot()
+        {
+            var input = new[]
+            {
+                new LexicalElement(LexicalElementType.Term, "op1", 1),
+                new LexicalElement(LexicalElementType.Term, "op2", 3),
+                new LexicalElement(LexicalElementType.Not, "ANDNOT", 2)
             };
 
             var expectedOutput = "((FORMSOF(INFLECTIONAL, \"op1\") OR FORMSOF(THESAURUS, \"op1\")) AND NOT (FORMSOF(INFLECTIONAL, \"op2\") OR FORMSOF(THESAURUS, \"op2\")))";

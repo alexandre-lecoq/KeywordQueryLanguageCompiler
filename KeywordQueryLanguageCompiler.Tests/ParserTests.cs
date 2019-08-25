@@ -60,6 +60,19 @@
         }
 
         [Fact]
+        public void OrphanAndNotElementParameter()
+        {
+            var input = new[]
+            {
+                new LexicalElement(LexicalElementType.Not, "ANDNOT", 1)
+            };
+
+            var output = Parser.GetPostfixNotation(input);
+
+            Assert.True(TestsHelper.IsEqual(input, output));
+        }
+
+        [Fact]
         public void OrphanOrElementParameter()
         {
             var input = new[]
@@ -148,7 +161,29 @@
 
             Assert.True(TestsHelper.IsEqual(output, expectedOutput));
         }
-        
+
+        [Fact]
+        public void AndNotElementParameter()
+        {
+            var input = new[]
+            {
+                new LexicalElement(LexicalElementType.Term, "a", 1),
+                new LexicalElement(LexicalElementType.Not, "ANDNOT", 3),
+                new LexicalElement(LexicalElementType.Term, "b", 10)
+            };
+
+            var expectedOutput = new[]
+            {
+                new LexicalElement(LexicalElementType.Term, "a", 1),
+                new LexicalElement(LexicalElementType.Term, "b", 10),
+                new LexicalElement(LexicalElementType.Not, "ANDNOT", 3)
+            };
+
+            var output = Parser.GetPostfixNotation(input);
+
+            Assert.True(TestsHelper.IsEqual(output, expectedOutput));
+        }
+
         [Fact]
         public void OrElementParameter()
         {

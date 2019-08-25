@@ -108,7 +108,7 @@
         }
 
         [Fact]
-        public void SimpleTokenization_TermWithWhiteSpacesAndKeyword()
+        public void SimpleTokenization_TermWithWhiteSpacesAndKeyword1()
         {
             var input = "a b AND c d";
 
@@ -124,6 +124,22 @@
             Assert.True(TestsHelper.IsEqual(elements, expectedElements));
         }
 
+        [Fact]
+        public void SimpleTokenization_TermWithWhiteSpacesAndKeyword2()
+        {
+            var input = "a b ANDNOT c d";
+
+            var expectedElements = new[]
+            {
+                new LexicalElement(LexicalElementType.Term, "a b", 1),
+                new LexicalElement(LexicalElementType.Not, "ANDNOT", 5),
+                new LexicalElement(LexicalElementType.Term, "c d", 12)
+            };
+
+            var elements = Lexer.Tokenize(input);
+
+            Assert.True(TestsHelper.IsEqual(elements, expectedElements));
+        }
 
         [Fact]
         public void SimpleTokenization_ComplexSpaceSeparatedTerms1()
@@ -167,6 +183,21 @@
             var expectedElements = new[]
             {
                 new LexicalElement(LexicalElementType.Not, "nOt", 1)
+            };
+
+            var elements = Lexer.Tokenize(input);
+
+            Assert.True(TestsHelper.IsEqual(elements, expectedElements));
+        }
+
+        [Fact]
+        public void SimpleTokenization_AndNot()
+        {
+            var input = "AnDnOt";
+
+            var expectedElements = new[]
+            {
+                new LexicalElement(LexicalElementType.Not, "AnDnOt", 1)
             };
 
             var elements = Lexer.Tokenize(input);
