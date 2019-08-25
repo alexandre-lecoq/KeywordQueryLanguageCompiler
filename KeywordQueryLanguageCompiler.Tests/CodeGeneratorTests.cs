@@ -115,6 +115,16 @@
         }
 
         [Fact]
+        public void SimpleONear()
+        {
+            var input = new[]
+            {
+                new LexicalElement(LexicalElementType.OrderedNear, "ONEAR", 1)
+            };
+            Assert.Throws<ParsingException>(() => CodeGenerator.Generate(input, FormsOfType.Both));
+        }
+
+        [Fact]
         public void SimpleLeftParenthesis()
         {
             var input = new[]
@@ -306,6 +316,23 @@
         }
 
         [Fact]
+        public void ValidONear()
+        {
+            var input = new[]
+            {
+                new LexicalElement(LexicalElementType.Term, "op1", 1),
+                new LexicalElement(LexicalElementType.Term, "op2", 3),
+                new LexicalElement(LexicalElementType.OrderedNear, "ONEAR", 2)
+            };
+
+            var expectedOutput = "(NEAR((\"op1\", \"op2\"), 2000, TRUE))";
+
+            var output = CodeGenerator.Generate(input, FormsOfType.Both);
+
+            Assert.Equal(expectedOutput, output);
+        }
+
+        [Fact]
         public void InfixOr()
         {
             var input = new[]
@@ -355,13 +382,13 @@
                 new LexicalElement(LexicalElementType.Term, "op3", 3),
                 new LexicalElement(LexicalElementType.Term, "op4", 4),
                 new LexicalElement(LexicalElementType.Term, "op5", 5),
-                new LexicalElement(LexicalElementType.Near, "Near", 6),
+                new LexicalElement(LexicalElementType.OrderedNear, "oNear", 6),
                 new LexicalElement(LexicalElementType.And, "AND", 7),
                 new LexicalElement(LexicalElementType.Not, "Not", 8),
                 new LexicalElement(LexicalElementType.Or, "Or", 9),
             };
 
-            var expectedOutput = "((FORMSOF(INFLECTIONAL, \"op1\") OR FORMSOF(THESAURUS, \"op1\")) OR ((FORMSOF(INFLECTIONAL, \"op2\") OR FORMSOF(THESAURUS, \"op2\")) AND NOT ((FORMSOF(INFLECTIONAL, \"op3\") OR FORMSOF(THESAURUS, \"op3\")) AND (NEAR((\"op4\", \"op5\"), 2000, FALSE)))))";
+            var expectedOutput = "((FORMSOF(INFLECTIONAL, \"op1\") OR FORMSOF(THESAURUS, \"op1\")) OR ((FORMSOF(INFLECTIONAL, \"op2\") OR FORMSOF(THESAURUS, \"op2\")) AND NOT ((FORMSOF(INFLECTIONAL, \"op3\") OR FORMSOF(THESAURUS, \"op3\")) AND (NEAR((\"op4\", \"op5\"), 2000, TRUE)))))";
 
             var output = CodeGenerator.Generate(input, FormsOfType.Both);
 

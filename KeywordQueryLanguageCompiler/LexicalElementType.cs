@@ -28,6 +28,11 @@
         Near,
 
         /// <summary>
+        /// The ONEAR element.
+        /// </summary>
+        OrderedNear,
+
+        /// <summary>
         /// The ( element.
         /// </summary>
         LeftParenthesis,

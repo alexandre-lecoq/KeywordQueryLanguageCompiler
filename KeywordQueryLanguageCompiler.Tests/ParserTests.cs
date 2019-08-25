@@ -99,6 +99,19 @@
         }
 
         [Fact]
+        public void OrphanONearElementParameter()
+        {
+            var input = new[]
+            {
+                new LexicalElement(LexicalElementType.OrderedNear, "ONEAR", 1)
+            };
+
+            var output = Parser.GetPostfixNotation(input);
+
+            Assert.True(TestsHelper.IsEqual(input, output));
+        }
+
+        [Fact]
         public void LeftParenthesisElementParameter()
         {
             var input = new[]
@@ -221,6 +234,28 @@
                 new LexicalElement(LexicalElementType.Term, "a", 1),
                 new LexicalElement(LexicalElementType.Term, "b", 7),
                 new LexicalElement(LexicalElementType.Near, "NEAR", 3)
+            };
+
+            var output = Parser.GetPostfixNotation(input);
+
+            Assert.True(TestsHelper.IsEqual(output, expectedOutput));
+        }
+
+        [Fact]
+        public void ONearElementParameter()
+        {
+            var input = new[]
+            {
+                new LexicalElement(LexicalElementType.Term, "a", 1),
+                new LexicalElement(LexicalElementType.Near, "ONEAR", 3),
+                new LexicalElement(LexicalElementType.Term, "b", 8)
+            };
+
+            var expectedOutput = new[]
+            {
+                new LexicalElement(LexicalElementType.Term, "a", 1),
+                new LexicalElement(LexicalElementType.Term, "b", 8),
+                new LexicalElement(LexicalElementType.Near, "ONEAR", 3)
             };
 
             var output = Parser.GetPostfixNotation(input);
@@ -543,6 +578,34 @@
         }
 
         [Fact]
+        public void ONearExpression1()
+        {
+            var input = new[]
+            {
+                new LexicalElement(LexicalElementType.LeftParenthesis, "(", 1),
+                new LexicalElement(LexicalElementType.Term, "a", 2),
+                new LexicalElement(LexicalElementType.And, "AND", 3),
+                new LexicalElement(LexicalElementType.Term, "b", 4),
+                new LexicalElement(LexicalElementType.RightParenthesis, ")", 5),
+                new LexicalElement(LexicalElementType.OrderedNear, "ONEAR", 6),
+                new LexicalElement(LexicalElementType.Term, "c", 7)
+            };
+
+            var expectedOutput = new[]
+            {
+                new LexicalElement(LexicalElementType.Term, "a", 2),
+                new LexicalElement(LexicalElementType.Term, "b", 4),
+                new LexicalElement(LexicalElementType.And, "AND", 3),
+                new LexicalElement(LexicalElementType.Term, "c", 7),
+                new LexicalElement(LexicalElementType.OrderedNear, "ONEAR", 6)
+            };
+
+            var output = Parser.GetPostfixNotation(input);
+
+            Assert.True(TestsHelper.IsEqual(output, expectedOutput));
+        }
+
+        [Fact]
         public void NearExpression2()
         {
             var input = new[]
@@ -563,6 +626,34 @@
                 new LexicalElement(LexicalElementType.Term, "c", 6),
                 new LexicalElement(LexicalElementType.And, "AND", 5),
                 new LexicalElement(LexicalElementType.Near, "NEAR", 1)
+            };
+
+            var output = Parser.GetPostfixNotation(input);
+
+            Assert.True(TestsHelper.IsEqual(output, expectedOutput));
+        }
+
+        [Fact]
+        public void ONearExpression2()
+        {
+            var input = new[]
+            {
+                new LexicalElement(LexicalElementType.OrderedNear, "ONEAR", 1),
+                new LexicalElement(LexicalElementType.Term, "a", 2),
+                new LexicalElement(LexicalElementType.LeftParenthesis, "(", 3),
+                new LexicalElement(LexicalElementType.Term, "b", 4),
+                new LexicalElement(LexicalElementType.And, "AND", 5),
+                new LexicalElement(LexicalElementType.Term, "c", 6),
+                new LexicalElement(LexicalElementType.RightParenthesis, ")", 7)
+            };
+
+            var expectedOutput = new[]
+            {
+                new LexicalElement(LexicalElementType.Term, "a", 2),
+                new LexicalElement(LexicalElementType.Term, "b", 4),
+                new LexicalElement(LexicalElementType.Term, "c", 6),
+                new LexicalElement(LexicalElementType.And, "AND", 5),
+                new LexicalElement(LexicalElementType.OrderedNear, "ONEAR", 1)
             };
 
             var output = Parser.GetPostfixNotation(input);

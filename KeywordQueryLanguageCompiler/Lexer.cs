@@ -254,6 +254,14 @@ namespace KeywordQueryLanguageCompiler
 
                     return LexicalElementType.Term;
 
+                case 5:
+                    if (text.Equals("ONEAR", StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        return LexicalElementType.OrderedNear;
+                    }
+
+                    return LexicalElementType.Term;
+
                 case 6:
                     if (text.Equals("ANDNOT", StringComparison.InvariantCultureIgnoreCase))
                     {

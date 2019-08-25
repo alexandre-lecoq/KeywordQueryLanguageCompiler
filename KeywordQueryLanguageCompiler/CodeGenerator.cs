@@ -53,7 +53,11 @@
                             break;
 
                         case LexicalElementType.Near:
-                            ProcessNear(stack, currentElement);
+                            ProcessNear(stack, currentElement, false);
+                            break;
+
+                        case LexicalElementType.OrderedNear:
+                            ProcessNear(stack, currentElement, true);
                             break;
                     }
                 }
@@ -106,7 +110,7 @@
             stack.Push(result);
         }
 
-        private static void ProcessNear(Stack<string> stack, LexicalElement element)
+        private static void ProcessNear(Stack<string> stack, LexicalElement element, bool matchOrder)
         {
             var o2 = stack.Pop();
             var o1 = stack.Pop();
@@ -116,7 +120,8 @@
                 throw new ParsingException("NEAR keyword only supports simple terms or prefix terms. The keyword does not allow complex expressions as operands", element, ErrorKind.NearKeywordOperandError);
             }
 
-            var result = $"(NEAR(({o1}, {o2}), 2000, FALSE))";
+            var matchOrderString = matchOrder.ToString().ToUpper();
+            var result = $"(NEAR(({o1}, {o2}), 2000, {matchOrderString}))";
             stack.Push(result);
         }
 

@@ -28,6 +28,13 @@
         }
 
         [Fact]
+        public void ONearTypeAssociativityIsKnown()
+        {
+            var type = LexicalElementType.OrderedNear;
+            type.GetAssociativity();
+        }
+
+        [Fact]
         public void NotTypeAssociativityIsKnown()
         {
             var type = LexicalElementType.Not;
@@ -80,6 +87,13 @@
         public void NearTypePrecedenceIsKnown()
         {
             var type = LexicalElementType.Near;
+            type.GetPrecedence();
+        }
+
+        [Fact]
+        public void ONearTypePrecedenceIsKnown()
+        {
+            var type = LexicalElementType.OrderedNear;
             type.GetPrecedence();
         }
 
@@ -140,6 +154,13 @@
         }
 
         [Fact]
+        public void ONearTypeIsOperatorIsKnown()
+        {
+            var type = LexicalElementType.OrderedNear;
+            Assert.True(type.IsOperator());
+        }
+
+        [Fact]
         public void NotTypeIsOperatorIsKnown()
         {
             var type = LexicalElementType.Not;
@@ -192,6 +213,13 @@
         public void NearTypeOperandCountIsKnown()
         {
             var type = LexicalElementType.Near;
+            Assert.Equal(2, type.GetOperandCount());
+        }
+
+        [Fact]
+        public void ONearTypeOperandCountIsKnown()
+        {
+            var type = LexicalElementType.OrderedNear;
             Assert.Equal(2, type.GetOperandCount());
         }
 

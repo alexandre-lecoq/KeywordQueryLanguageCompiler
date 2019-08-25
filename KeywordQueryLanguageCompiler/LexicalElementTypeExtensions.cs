@@ -21,6 +21,7 @@
                 case LexicalElementType.Not:
                 case LexicalElementType.Or:
                 case LexicalElementType.Near:
+                case LexicalElementType.OrderedNear:
                 case LexicalElementType.LeftParenthesis:
                 case LexicalElementType.RightParenthesis:
                     return OperatorAssociativity.Left;
@@ -54,6 +55,9 @@
                 case LexicalElementType.Not:
                     return 3;
 
+                case LexicalElementType.OrderedNear:
+                    return 4;
+
                 case LexicalElementType.Near:
                     return 5;
 
@@ -79,6 +83,7 @@
                 case LexicalElementType.Not:
                 case LexicalElementType.Or:
                 case LexicalElementType.Near:
+                case LexicalElementType.OrderedNear:
                     return true;
 
                 case LexicalElementType.Term:
@@ -104,6 +109,7 @@
                 case LexicalElementType.Not:
                 case LexicalElementType.Or:
                 case LexicalElementType.Near:
+                case LexicalElementType.OrderedNear:
                     return 2;
 
                 case LexicalElementType.Term:

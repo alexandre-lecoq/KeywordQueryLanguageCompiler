@@ -73,8 +73,8 @@
         [Fact]
         public void CompilerTranslateSuccessInflectionalFormsOf()
         {
-            var input = "android AND (oracl* OR C++ OR C99) NOT iphone OR   \"  hey  baby  *\"   AND phone NEAR appl*";
-            var expectedOutput = "(((FORMSOF(INFLECTIONAL, \"android\") AND ((\"oracl*\" OR FORMSOF(INFLECTIONAL, \"C++\")) OR FORMSOF(INFLECTIONAL, \"C99\"))) AND NOT FORMSOF(INFLECTIONAL, \"iphone\")) OR (\"  hey  baby  *\" AND (NEAR((\"phone\", \"appl*\"), 2000, FALSE))))";
+            var input = "android AND (oracl* OR C++ OR C99) NOT iphone OR   \"  hey  baby  *\"   AND phone ONEAR appl*";
+            var expectedOutput = "(((FORMSOF(INFLECTIONAL, \"android\") AND ((\"oracl*\" OR FORMSOF(INFLECTIONAL, \"C++\")) OR FORMSOF(INFLECTIONAL, \"C99\"))) AND NOT FORMSOF(INFLECTIONAL, \"iphone\")) OR (\"  hey  baby  *\" AND (NEAR((\"phone\", \"appl*\"), 2000, TRUE))))";
 
             var output = Compiler.Translate(input, FormsOfType.Inflectional);
 
@@ -84,8 +84,8 @@
         [Fact]
         public void CompilerTranslateSuccessThesaurusFormsOf()
         {
-            var input = "android AND (oracl* OR C++ OR C99) NOT iphone OR   \"  hey  baby  *\"   AND phone NEAR appl*";
-            var expectedOutput = "(((FORMSOF(THESAURUS, \"android\") AND ((\"oracl*\" OR FORMSOF(THESAURUS, \"C++\")) OR FORMSOF(THESAURUS, \"C99\"))) AND NOT FORMSOF(THESAURUS, \"iphone\")) OR (\"  hey  baby  *\" AND (NEAR((\"phone\", \"appl*\"), 2000, FALSE))))";
+            var input = "android AND (oracl* OR C++ OR C99) NOT iphone OR   \"  hey  baby  *\"   AND phone ONEAR appl*";
+            var expectedOutput = "(((FORMSOF(THESAURUS, \"android\") AND ((\"oracl*\" OR FORMSOF(THESAURUS, \"C++\")) OR FORMSOF(THESAURUS, \"C99\"))) AND NOT FORMSOF(THESAURUS, \"iphone\")) OR (\"  hey  baby  *\" AND (NEAR((\"phone\", \"appl*\"), 2000, TRUE))))";
 
             var output = Compiler.Translate(input, FormsOfType.Thesaurus);
 

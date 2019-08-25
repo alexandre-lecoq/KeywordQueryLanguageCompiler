@@ -236,6 +236,21 @@
         }
 
         [Fact]
+        public void SimpleTokenization_ONear()
+        {
+            var input = "OnEaR";
+
+            var expectedElements = new[]
+            {
+                new LexicalElement(LexicalElementType.OrderedNear, "OnEaR", 1)
+            };
+
+            var elements = Lexer.Tokenize(input);
+
+            Assert.True(TestsHelper.IsEqual(elements, expectedElements));
+        }
+
+        [Fact]
         public void SimpleTokenization_QuotedAnd()
         {
             var input = "\"AND\"";
@@ -682,7 +697,7 @@
         [Fact]
         public void ComplexTokenization_AllTokens()
         {
-            var input = "reimbursement AnD NoT Or NeAr ( )";
+            var input = "reimbursement AnD NoT Or oNeAr ( )";
 
             var expectedElements = new[]
             {
@@ -690,9 +705,9 @@
                 new LexicalElement(LexicalElementType.And, "AnD", 15),
                 new LexicalElement(LexicalElementType.Not, "NoT", 19),
                 new LexicalElement(LexicalElementType.Or, "Or", 23),
-                new LexicalElement(LexicalElementType.Near, "NeAr", 26),
-                new LexicalElement(LexicalElementType.LeftParenthesis, "(", 31),
-                new LexicalElement(LexicalElementType.RightParenthesis, ")", 33)
+                new LexicalElement(LexicalElementType.OrderedNear, "oNeAr", 26),
+                new LexicalElement(LexicalElementType.LeftParenthesis, "(", 32),
+                new LexicalElement(LexicalElementType.RightParenthesis, ")", 34)
             };
 
             var elements = Lexer.Tokenize(input);
@@ -805,7 +820,7 @@
         [Fact]
         public void ComplexTokenization_LongValidQuery()
         {
-            var input = "android , no AND (oracl* OR C++ OR C99) NOT iphone,less OR   \"  hey  baby  *\"   AND phone NEAR appl*, more";
+            var input = "android , no AND (oracl* OR C++ OR C99) NOT iphone,less OR   \"  hey  baby  *\"   AND phone ONEAR appl*, more";
 
             var expectedElements = new[]
             {
@@ -828,10 +843,10 @@
                 new LexicalElement(LexicalElementType.Term, "  hey  baby  *", 63),
                 new LexicalElement(LexicalElementType.And, "AND", 81),
                 new LexicalElement(LexicalElementType.Term, "phone", 85),
-                new LexicalElement(LexicalElementType.Near, "NEAR", 91),
-                new LexicalElement(LexicalElementType.Term, "appl*", 96),
-                new LexicalElement(LexicalElementType.And, ",", 101),
-                new LexicalElement(LexicalElementType.Term, "more", 103)
+                new LexicalElement(LexicalElementType.OrderedNear, "ONEAR", 91),
+                new LexicalElement(LexicalElementType.Term, "appl*", 97),
+                new LexicalElement(LexicalElementType.And, ",", 102),
+                new LexicalElement(LexicalElementType.Term, "more", 104)
             };
 
             var elements = Lexer.Tokenize(input);
