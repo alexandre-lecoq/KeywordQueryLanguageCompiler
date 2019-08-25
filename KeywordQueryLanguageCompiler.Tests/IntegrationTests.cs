@@ -84,7 +84,7 @@
         [Fact]
         public void CompilerTranslateSuccessThesaurusFormsOf()
         {
-            var input = "android AND (oracl* OR C++ OR C99) NOT iphone OR   \"  hey  baby  *\"   AND phone ONEAR appl*";
+            var input = "android AND (oracl* OR C++ OR C99) ANDNOT iphone OR   \"  hey  baby  *\"   AND phone ONEAR appl*";
             var expectedOutput = "(((FORMSOF(THESAURUS, \"android\") AND ((\"oracl*\" OR FORMSOF(THESAURUS, \"C++\")) OR FORMSOF(THESAURUS, \"C99\"))) AND NOT FORMSOF(THESAURUS, \"iphone\")) OR (\"  hey  baby  *\" AND (NEAR((\"phone\", \"appl*\"), 2000, TRUE))))";
 
             var output = Compiler.Translate(input, FormsOfType.Thesaurus);
